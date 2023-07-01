@@ -1,0 +1,155 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\SuratMasuk;
+use App\Models\SuratMasukDetail;
+use Illuminate\Http\Request;
+
+class SuratMasukController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $suratmasuk = SuratMasuk::latest()->when(request()->q, function ($jenis) {
+            $jenis = $jenis->where('id', 'like', '%' . request()->q . '%');
+        })->paginate(10);
+
+        return view('admin.suratmasuk.index', compact('suratmasuk'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.suratmasuk.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // Validation passed, proceed to save data to the database
+        $this->validate($request, [
+            'no_surat'                  => 'required',
+            'jenis_surat'               => 'required',
+            'tanggal_penerimaan'        => 'required',
+            'no_agenda'                 => 'required',
+            'tanggal_surat'             => 'required',
+            'asal_surat'                => 'required',
+            'tujuan_surat'              => 'required',
+            'perihal'                   => 'required'
+        ]);
+
+        // Example: Create a new user and store it in the database
+        $suratmasuk = SuratMasuk::create([
+
+            'no_surat'               => $request->input('no_surat'),
+            'jenis_surat'            => $request->input('jenis_surat'),
+            'tanggal_penerimaan'     => $request->input('tanggal_penerimaan'),
+            'no_agenda'              => $request->input('no_agenda'),
+            'tanggal_surat'          => $request->input('tanggal_surat'),
+            'asal_surat'             => $request->input('asal_surat'),
+            'tujuan_surat'           => $request->input('tujuan_surat'),
+            'perihal'                => $request->input('perihal')
+
+        ]);
+
+        if ($suratmasuk) {
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.suratmasuk.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('admin.suratmasuk.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $suratMasukDetail = SuratMasukDetail::where('surat_masuk_id', $id)->get();
+
+        $suratmasuk = SuratMasuk::findOrFail($id);
+
+        return view('admin.suratmasuk.edit', compact('suratmasuk', 'suratMasukDetail'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // Validation passed, proceed to save data to the database
+        $this->validate($request, [
+            'no_surat'                  => 'required',
+            'jenis_surat'               => 'required',
+            'tanggal_penerimaan'        => 'required',
+            'no_agenda'                 => 'required',
+            'tanggal_surat'             => 'required',
+            'asal_surat'                => 'required',
+            'tujuan_surat'              => 'required',
+            'perihal'                   => 'required'
+        ]);
+
+        $suratmasuk = SuratMasuk::findOrFail($id);
+
+        $suratmasuk->update([
+            'no_surat'               => $request->input('no_surat'),
+            'jenis_surat'            => $request->input('jenis_surat'),
+            'tanggal_penerimaan'     => $request->input('tanggal_penerimaan'),
+            'no_agenda'              => $request->input('no_agenda'),
+            'tanggal_surat'          => $request->input('tanggal_surat'),
+            'asal_surat'             => $request->input('asal_surat'),
+            'tujuan_surat'           => $request->input('tujuan_surat'),
+            'perihal'                => $request->input('perihal')
+        ]);
+
+        if ($suratmasuk) {
+            return redirect()->back()->with(['success' => 'Data Berhasil DiUpdate!']);
+        } else {
+            return redirect()->back()->with(['error' => 'Data Gagal Di Update!']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
