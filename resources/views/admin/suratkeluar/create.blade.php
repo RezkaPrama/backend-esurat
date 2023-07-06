@@ -59,13 +59,22 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="jenis_surat">Jenis Surat</label>
-                                <input id="jenis_surat" name="jenis_surat" placeholder="Masukan jenis_surat"
-                                    type="text" class="form-control @error('jenis_surat') is-invalid @enderror">
+                                <label for="choices-single-specifications" class="form-label">Jenis Surat</label>
+                                <select
+                                    class="form-control @error('jenis_surat') is-invalid @enderror"
+                                    data-trigger name="jenis_surat" id="jenis_surat">
+                                    <option value="">Pilih Jenis Surat</option>
+                                    <option value="Surat Perintah">Surat Perintah</option>
+                                    <option value="Surat B">Surat B</option>
+                                    <option value="ST">ST</option>
+                                    <option value="STR">STR</option>
+                                    <option value="SE">SE</option>
+                                    <option value="Nota Dinas">Nota Dinas</option>
+                                </select>
 
                                 @error('jenis_surat')
                                 <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
+                                    Jenis Karyawan harus terisi
                                 </div>
                                 @enderror
                             </div>

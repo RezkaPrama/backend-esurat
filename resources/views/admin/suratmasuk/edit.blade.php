@@ -63,14 +63,22 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="jenis_surat">Jenis Surat</label>
-                                <input id="jenis_surat" name="jenis_surat" placeholder="Masukan jenis_surat"
-                                    value="{{ old('suratmasuk', $suratmasuk->jenis_surat) }}" type="text"
-                                    class="form-control @error('jenis_surat') is-invalid @enderror">
+                                <label for="choices-single-specifications" class="form-label">Jenis Surat</label>
+                                <select
+                                    class="form-control @error('jenis_surat') is-invalid @enderror"
+                                    data-trigger name="jenis_surat" id="jenis_surat">
+                                    <option value="">Pilih Jenis Surat</option>
+                                    <option value="Surat Perintah" {{ $suratmasuk->jenis_surat == 'Surat Perintah' ? 'selected' : '' }}>Surat Perintah</option>
+                                    <option value="Surat B" {{ $suratmasuk->jenis_surat == 'Surat B' ? 'selected' : '' }}>Surat B</option>
+                                    <option value="ST" {{ $suratmasuk->jenis_surat == 'ST' ? 'selected' : '' }}>ST</option>
+                                    <option value="STR" {{ $suratmasuk->jenis_surat == 'STR' ? 'selected' : '' }}>STR</option>
+                                    <option value="SE" {{ $suratmasuk->jenis_surat == 'SE' ? 'selected' : '' }}>SE</option>
+                                    <option value="Nota Dinas" {{ $suratmasuk->jenis_surat == 'Nota Dinas' ? 'selected' : '' }}>Nota Dinas</option>
+                                </select>
 
                                 @error('jenis_surat')
                                 <div class="invalid-feedback" style="display: block">
-                                    {{ $message }}
+                                    Jenis Karyawan harus terisi
                                 </div>
                                 @enderror
                             </div>

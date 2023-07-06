@@ -6,6 +6,7 @@
 <link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css">
 <!-- Sweet Alert-->
 <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -19,20 +20,47 @@
         <div class="card">
 
             <!-- card-header default start// -->
-            <div class="card-body">
-                <div class="position-relative">
-                    <div class="modal-button mt-2">
-                        <div class="row align-items-start">
-                            <div class="col-sm">
-                                <div>
-                                    <a href="{{ route('admin.suratkeluar.create') }}" class="btn btn-success mb-4"><i
-                                        class="mdi mdi-plus me-1"></i> Tambah</a>
-                                </div>
-                            </div>
+            <div class="card-header">
+                <form action="{{ route('admin.suratkeluar.index') }}" method="GET">
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Jenis Surat</label>
+                        <div class="col-sm-4">
+                            <select class="form-control @error('jenis_surat') is-invalid @enderror" data-trigger
+                                name="jenis_surat" id="jenis_surat">
+                                <option value="">Pilih Jenis Surat</option>
+                                <option value="Surat Perintah">Surat Perintah</option>
+                                <option value="Surat B">Surat B</option>
+                                <option value="ST">ST</option>
+                                <option value="STR">STR</option>
+                                <option value="SE">SE</option>
+                                <option value="Nota Dinas">Nota Dinas</option>
+                            </select>
                         </div>
-                        <!-- end row -->
                     </div>
-                </div>
+
+                    <div class="mb-3 row">
+                        <label for="example-week-input" class="col-md-2 col-form-label">Tanggal Surat</label>
+                        <div class="col-sm-2">
+                            <input id="tanggal_surat_dari" name="tanggal_surat_dari" placeholder="Filter Tanggal Usulan"
+                                type="text" class="form-control flatpickr-input">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="tanggal_surat_sampai" name="tanggal_surat_sampai"
+                                placeholder="Filter Tanggal Usulan" type="text" class="form-control flatpickr-input">
+                        </div>
+                        <button type="submit" class="btn btn-success mb-4 col-sm-2 me-1"><i
+                                class="mdi mdi-filter me-1"></i>
+                            Filter</button>
+                        {{-- <a href="{{ route('admin.trans.export') }}" type="submit"
+                            class="btn btn-success mb-4 col-sm-2 "><i class="mdi mdi-microsoft-excel me-1"></i>
+                            Export</a> --}}
+                    </div>
+                    <div class="text-end">
+                        <a href="{{ route('admin.suratmasuk.create') }}" class="btn btn-success mb-4"><i
+                                class="mdi mdi-plus me-1"></i> Tambah</a>
+                    </div>
+                </form>
             </div>
             <!-- card-header default end// -->
 
@@ -58,7 +86,7 @@
                                             <th style="width:120px;">Tanggal Pembuatan</th>
                                             <th>Tanggal Surat</th>
                                             <th>Dari</th>
-                                            <th >Kepada</th>
+                                            <th>Kepada</th>
                                             <th>Perihal</th>
                                             <th class="text-center">Upload</th>
                                         </tr>
@@ -80,7 +108,7 @@
                                             <td>{{ $row->asal_surat }}</td>
                                             <td>{{ $row->tujuan_surat }}</td>
                                             <td>{{ $row->perihal }}</td>
-                                            
+
                                             <td class="text-center">
                                                 <a href="{{ route('admin.suratkeluar.edit', $row->id) }}"><i
                                                         class="bx bx-upload icon nav-icon"></i></a>
@@ -112,6 +140,8 @@
 <script src="{{ URL::asset('assets/libs/gridjs/gridjs.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/ecommerce-choices.init.js') }}"></script>
 
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
@@ -212,13 +242,13 @@
 </script>
 
 <script>
-    flatpickr('#tanggal_usulan', {
+    flatpickr('#tanggal_surat_dari', {
     altInput: true,
     altFormat: "F j, Y",
     dateFormat: "Y-m-d",
     });
 
-    flatpickr('#tahun', {
+    flatpickr('#tanggal_surat_sampai', {
     altInput: true,
     altFormat: "F j, Y",
     dateFormat: "Y-m-d",

@@ -44,6 +44,10 @@ class ComposerStaticInit0f7027e00045f9acee8eae32500183c6
         array (
             'voku\\' => 5,
         ),
+        'e' => 
+        array (
+            'eloquentFilter\\' => 15,
+        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -185,6 +189,10 @@ class ComposerStaticInit0f7027e00045f9acee8eae32500183c6
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'eloquentFilter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src',
         ),
         'Whoops\\' => 
         array (
@@ -5705,6 +5713,48 @@ class ComposerStaticInit0f7027e00045f9acee8eae32500183c6
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'eloquentFilter\\Command\\MakeEloquentFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/Command/MakeEloquentFilter.php',
+        'eloquentFilter\\Facade\\EloquentFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/Facade/EloquentFilter.php',
+        'eloquentFilter\\QueryFilter\\Core\\EloquentBuilder\\QueryBuilderWrapper' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/EloquentBuilder/QueryBuilderWrapper.php',
+        'eloquentFilter\\QueryFilter\\Core\\EloquentBuilder\\QueryBuilderWrapperInterface' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/EloquentBuilder/QueryBuilderWrapperInterface.php',
+        'eloquentFilter\\QueryFilter\\Core\\FilterBuilder\\QueryFilterBuilder' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/FilterBuilder/QueryFilterBuilder.php',
+        'eloquentFilter\\QueryFilter\\Core\\FilterBuilder\\RequestFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/FilterBuilder/RequestFilter.php',
+        'eloquentFilter\\QueryFilter\\Core\\FilterBuilder\\ResponseFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/FilterBuilder/ResponseFilter.php',
+        'eloquentFilter\\QueryFilter\\Core\\FilterBuilder\\core\\QueryFilterCore' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/FilterBuilder/core/QueryFilterCore.php',
+        'eloquentFilter\\QueryFilter\\Core\\FilterBuilder\\core\\QueryFilterCoreBuilder' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/FilterBuilder/core/QueryFilterCoreBuilder.php',
+        'eloquentFilter\\QueryFilter\\Core\\HelperEloquentFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/HelperEloquentFilter.php',
+        'eloquentFilter\\QueryFilter\\Core\\HelperFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/HelperFilter.php',
+        'eloquentFilter\\QueryFilter\\Core\\ResolverDetections' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Core/ResolverDetections.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\SpecialCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/SpecialCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereBetweenCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereBetweenCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereByOptCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereByOptCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereCustomCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereCustomCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereDateCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereDateCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereHasCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereHasCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereInCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereInCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereLikeCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereLikeCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\Eloquent\\WhereOrCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/Eloquent/WhereOrCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\Contract\\DetectorConditionsContract' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/Contract/DetectorConditionsContract.php',
+        'eloquentFilter\\QueryFilter\\Detection\\Contract\\DetectorFactoryContract' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/Contract/DetectorFactoryContract.php',
+        'eloquentFilter\\QueryFilter\\Detection\\DetectionFactory' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/DetectionFactory.php',
+        'eloquentFilter\\QueryFilter\\Detection\\DetectorCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/DetectorCondition.php',
+        'eloquentFilter\\QueryFilter\\Exceptions\\EloquentFilterException' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Exceptions/EloquentFilterException.php',
+        'eloquentFilter\\QueryFilter\\Factory\\QueryBuilderWrapperFactory' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Factory/QueryBuilderWrapperFactory.php',
+        'eloquentFilter\\QueryFilter\\Factory\\QueryFilterCoreFactory' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Factory/QueryFilterCoreFactory.php',
+        'eloquentFilter\\QueryFilter\\ModelFilters\\Filterable' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/ModelFilters/Filterable.php',
+        'eloquentFilter\\QueryFilter\\Queries\\BaseClause' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/BaseClause.php',
+        'eloquentFilter\\QueryFilter\\Queries\\Special' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/Special.php',
+        'eloquentFilter\\QueryFilter\\Queries\\Where' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/Where.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereBetween' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereBetween.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereByOpt' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereByOpt.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereCustom' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereCustom.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereDate' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereDate.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereHas' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereHas.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereIn' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereIn.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereLike' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereLike.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereOr' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereOr.php',
+        'eloquentFilter\\ServiceProvider' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/ServiceProvider.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

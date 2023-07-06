@@ -13,11 +13,19 @@ class SuratMasukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $suratmasuk = SuratMasuk::latest()->when(request()->q, function ($jenis) {
-            $jenis = $jenis->where('id', 'like', '%' . request()->q . '%');
-        })->paginate(10);
+        $query = SuratMasuk::query();
+
+        if ($request->has('jenis_surat')) {
+            $query->orWhere('jenis_surat', $request->jenis_surat);
+        }
+
+        if ($request->has('tanggal_surat_dari') && $request->has('tanggal_surat_sampai')) {
+            $query->orWhereBetween('tanggal_surat', [$request->input('tanggal_surat_dari'), $request->input('tanggal_surat_sampai')]);
+        }
+
+        $suratmasuk = $query->paginate(10);
 
         return view('admin.suratmasuk.index', compact('suratmasuk'));
     }
