@@ -26,23 +26,27 @@
                         <label class="col-sm-2 col-form-label">Jenis Surat</label>
                         <div class="col-sm-4">
                             <select class="form-control @error('jenis_surat') is-invalid @enderror" data-trigger
-                            name="jenis_surat" id="jenis_surat">
-                            <option value="">Pilih Jenis Surat</option>
-                            <option value="Surat Perintah">Surat Perintah</option>
-                            <option value="Surat B">Surat B</option>
-                            <option value="ST">ST</option>
-                            <option value="STR">STR</option>
-                            <option value="SE">SE</option>
-                            <option value="Nota Dinas">Nota Dinas</option>
-                        </select>
+                                name="jenis_surat" id="jenis_surat">
+                                <option value="">Pilih Jenis Surat</option>
+                                <option value="Surat Perintah">Surat Perintah</option>
+                                <option value="Surat B">Surat B</option>
+                                <option value="ST">ST</option>
+                                <option value="STR">STR</option>
+                                <option value="SE">SE</option>
+                                <option value="Nota Dinas">Nota Dinas</option>
+                            </select>
                         </div>
                     </div>
+
+                    {{-- <label class="col-sm-2 col-form-label">user id</label> --}}
+                    <input id="userid" name="userid" type="hidden" value="{{auth()->user()->id}}"
+                    class="form-control ">
 
                     <div class="mb-3 row">
                         <label for="example-week-input" class="col-md-2 col-form-label">Tanggal Surat</label>
                         <div class="col-sm-2">
-                            <input id="tanggal_surat_dari" name="tanggal_surat_dari"
-                                placeholder="Filter Tanggal Usulan" type="text" class="form-control flatpickr-input">
+                            <input id="tanggal_surat_dari" name="tanggal_surat_dari" placeholder="Filter Tanggal Usulan"
+                                type="text" class="form-control flatpickr-input">
                         </div>
                         <div class="col-sm-2">
                             <input id="tanggal_surat_sampai" name="tanggal_surat_sampai"
@@ -51,7 +55,10 @@
                         <button type="submit" class="btn btn-success mb-4 col-sm-2 me-1"><i
                                 class="mdi mdi-filter me-1"></i>
                             Filter</button>
-                        {{-- <a href="{{ route('admin.trans.export') }}" type="submit"
+                        <a id="export-excel" class="btn btn-success mb-4 col-sm-2 "><i
+                                class="mdi mdi-microsoft-excel me-1"></i>
+                            Export</a>
+                        {{-- <a href="{{ route('admin.suratmasuk.exportExcel', auth()->user()->id) }}"
                             class="btn btn-success mb-4 col-sm-2 "><i class="mdi mdi-microsoft-excel me-1"></i>
                             Export</a> --}}
                     </div>
@@ -146,8 +153,39 @@
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
     $(document).ready(function() {
+
+        document.getElementById('export-excel').addEventListener('click', function() {
+            
+            var jenis_surat = null;
+            var tanggal_surat_dari = null;
+            var tanggal_surat_sampai = null;
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.has('jenis_surat') || urlParams.has('tanggal_surat_dari') || urlParams.has('tanggal_surat_sampai') ) {
+                
+                const param = document.getElementById('userid').value;
+                var jenis_surat = urlParams.get('jenis_surat');
+                var tanggal_surat_dari = urlParams.get('tanggal_surat_dari');
+                var tanggal_surat_sampai = urlParams.get('tanggal_surat_sampai');
+
+                var data = {
+                    userid: param,
+                    jenis_surat: jenis_surat,
+                    tanggal_surat_dari: tanggal_surat_dari,
+                    tanggal_surat_sampai: tanggal_surat_sampai,
+                };
+
+                window.location.href = `{{ route("admin.suratmasuk.exportExcel", "") }}/${param}`;
+
+            } else {
+                
+                const param = document.getElementById('userid').value;
+                window.location.href = `{{ route("admin.suratmasuk.exportExcel", "") }}/${param}`;
+            }
+    });
 
         // Swal.fire("Hello, SweetAlert!");
 
@@ -178,66 +216,6 @@
         @endif
 
     });
-
-    // document.getElementById("destroy").addEventListener("click", function() {
-    //         var id = this.getAttribute('data-id');
-    //         var token = '{{ csrf_token() }}';
-    //         console.log(id);
-
-
-    //         Swal.fire({
-    //             title: "Apakah anda yakin ?",
-    //             text: "untuk menghapus data ini!",
-    //             icon: "warning",
-    //             showCancelButton: !0,
-    //             confirmButtonColor: "#2B8972",
-    //             cancelButtonColor: "#f34e4e",
-    //             confirmButtonText: "Yes, hapus!",
-    //         }).then(function(result) {
-    //             if (result.isConfirmed == true) {
-                    
-    //                 //ajax delete
-    //                 jQuery.ajax({
-    //                     url: "/admin/manageFile/" + id,
-    //                     data: {
-    //                         "id": id,
-    //                         "_token": token
-    //                     },
-    //                     type: 'DELETE',
-    //                     success: function(response) {
-    //                         if (response.status == "success") {
-    //                             swal.fire({
-    //                                 title: 'BERHASIL!',
-    //                                 text: 'DATA BERHASIL DIHAPUS!',
-    //                                 icon: 'success',
-    //                                 timer: 1000,
-    //                                 showConfirmButton: false,
-    //                                 showCancelButton: false,
-    //                                 buttons: false,
-    //                             }).then(function() {
-    //                                 location.reload();
-    //                             });
-    //                         } else {
-    //                             swal.fire({
-    //                                 title: 'GAGAL!',
-    //                                 text: 'DATA GAGAL DIHAPUS!',
-    //                                 icon: 'error',
-    //                                 timer: 1000,
-    //                                 showConfirmButton: false,
-    //                                 showCancelButton: false,
-    //                                 buttons: false,
-    //                             }).then(function() {
-    //                                 location.reload();
-    //                             });
-    //                         }
-    //                     }
-    //                 });
-
-    //             } else {
-    //                 return true;
-    //             }
-    //         })
-        // });
 
 </script>
 

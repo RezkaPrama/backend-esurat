@@ -14,7 +14,17 @@ class SuratMasuk extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+    public $fillable = [
+        'id',
+        'no_surat',
+        'jenis_surat',
+        'tanggal_penerimaan',
+        'no_agenda',
+        'tanggal_surat',
+        'asal_surat',
+        'tujuan_surat',
+        'perihal'
+    ];
 
     /**
      * detail

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SuratMasukExport;
 use App\Models\SuratMasuk;
 use App\Models\SuratMasukDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SuratMasukController extends Controller
 {
@@ -159,5 +162,70 @@ class SuratMasukController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * filter export the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function exportExcel(Request $request, $userid)
+    {
+        $jenis_surat = $request->input('jenis_surat');
+        $tanggal_surat_dari = $request->input('tanggal_surat_dari');
+        $tanggal_surat_sampai = $request->input('tanggal_surat_sampai');
+
+        $query = SuratMasuk::query();
+
+        if ($jenis_surat != null) {
+            $query->where('jenis_surat', $jenis_surat);
+        }
+
+        if ($tanggal_surat_dari && $tanggal_surat_sampai) {
+            $query->orWhereBetween('tanggal_surat', [$tanggal_surat_dari, $tanggal_surat_sampai]);
+        }
+
+        $results = $query->get();
+
+        return Excel::download(new SuratMasukExport($results), 'surat_masuk.xlsx');
+    }
+
+    /**
+     * filter export the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function exportFilterExcel(Request $request)
+    {
+
+        $data = $request->json()->all();
+
+        $userid = $data['userid'];
+        $jenis_surat = $data['jenis_surat'];
+        $tanggal_surat_dari = $data['tanggal_surat_dari'];
+        $tanggal_surat_sampai = $data['tanggal_surat_sampai'];
+
+        $query = SuratMasuk::query();
+
+        if ($jenis_surat != null) {
+            $query->where('jenis_surat', $jenis_surat);
+        }
+
+        if ($tanggal_surat_dari && $tanggal_surat_sampai) {
+            $query->orWhereBetween('tanggal_surat', [$tanggal_surat_dari, $tanggal_surat_sampai]);
+        }
+
+        $results = $query->get();
+
+        return Excel::download(new SuratMasukExport($results), 'surat_masuk.xlsx');
+
+        // return response()->json([
+        //     'result' => $results,
+        //     'jenis_surat' => $jenis_surat,
+        // ]);
     }
 }

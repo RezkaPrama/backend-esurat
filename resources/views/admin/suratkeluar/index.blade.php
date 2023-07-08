@@ -39,6 +39,10 @@
                         </div>
                     </div>
 
+                    {{-- <label class="col-sm-2 col-form-label">user id</label> --}}
+                    <input id="userid" name="userid" type="hidden" value="{{auth()->user()->id}}"
+                    class="form-control ">
+
                     <div class="mb-3 row">
                         <label for="example-week-input" class="col-md-2 col-form-label">Tanggal Surat</label>
                         <div class="col-sm-2">
@@ -52,6 +56,8 @@
                         <button type="submit" class="btn btn-success mb-4 col-sm-2 me-1"><i
                                 class="mdi mdi-filter me-1"></i>
                             Filter</button>
+                        <a id="export-excel" class="btn btn-success mb-4 col-sm-2 "><i class="mdi mdi-microsoft-excel me-1"></i>
+                            Export</a>
                         {{-- <a href="{{ route('admin.trans.export') }}" type="submit"
                             class="btn btn-success mb-4 col-sm-2 "><i class="mdi mdi-microsoft-excel me-1"></i>
                             Export</a> --}}
@@ -148,6 +154,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+
+        document.getElementById('export-excel').addEventListener('click', function() {
+            
+            var jenis_surat = null;
+            var tanggal_surat_dari = null;
+            var tanggal_surat_sampai = null;
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.has('jenis_surat') || urlParams.has('tanggal_surat_dari') || urlParams.has('tanggal_surat_sampai') ) {
+                
+                const param = document.getElementById('userid').value;
+                var jenis_surat = urlParams.get('jenis_surat');
+                var tanggal_surat_dari = urlParams.get('tanggal_surat_dari');
+                var tanggal_surat_sampai = urlParams.get('tanggal_surat_sampai');
+
+                var data = {
+                    userid: param,
+                    jenis_surat: jenis_surat,
+                    tanggal_surat_dari: tanggal_surat_dari,
+                    tanggal_surat_sampai: tanggal_surat_sampai,
+                };
+
+                window.location.href = `{{ route("admin.suratkeluar.exportExcel", "") }}/${param}`;
+
+            } else {
+                
+                const param = document.getElementById('userid').value;
+                window.location.href = `{{ route("admin.suratkeluar.exportExcel", "") }}/${param}`;
+                
+            }
+    });
 
         // Swal.fire("Hello, SweetAlert!");
 

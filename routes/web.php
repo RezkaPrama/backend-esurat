@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
 
         // route Surat masuk
         Route::resource('/suratmasuk', SuratMasukController::class, ['as' => 'admin']);
+        Route::get('/suratmasuk/exportExcel/{userid}', [SuratMasukController::class, 'exportExcel'])->name('admin.suratmasuk.exportExcel');
+        Route::get('/suratmasuk/exportFilterExcel/{userid}', [SuratMasukController::class, 'exportFilterExcel'])->name('admin.suratmasuk.exportFilterExcel');
 
         //route Surat masuk detail file
         Route::post('/suratMasukDetail/upload', [SuratMasukDetailController::class, 'upload'])->name('admin.suratMasukDetail.upload');
@@ -51,6 +53,7 @@ Route::prefix('admin')->group(function () {
 
         // route Surat masuk
         Route::resource('/suratkeluar', SuratKeluarController::class, ['as' => 'admin']);
+        Route::get('/suratkeluar/exportExcel/{userid}', [SuratKeluarController::class, 'exportExcel'])->name('admin.suratkeluar.exportExcel');
 
         //route Surat masuk detail file
         Route::post('/suratKeluarDetail/upload', [SuratKeluarDetailController::class, 'upload'])->name('admin.suratKeluarDetail.upload');

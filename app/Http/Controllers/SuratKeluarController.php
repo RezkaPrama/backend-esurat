@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SuratKeluarExport;
 use App\Models\SuratKeluar;
 use App\Models\SuratKeluarDetail;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SuratKeluarController extends Controller
 {
@@ -156,4 +158,32 @@ class SuratKeluarController extends Controller
     {
         //
     }
+
+     /**
+     * filter export the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+     public function exportExcel(Request $request, $userid)
+     {
+         $jenis_surat = $request->input('jenis_surat');
+         $tanggal_surat_dari = $request->input('tanggal_surat_dari');
+         $tanggal_surat_sampai = $request->input('tanggal_surat_sampai');
+ 
+         $query = SuratKeluar::query();
+ 
+         if ($jenis_surat != null) {
+             $query->where('jenis_surat', $jenis_surat);
+         }
+ 
+         if ($tanggal_surat_dari && $tanggal_surat_sampai) {
+             $query->orWhereBetween('tanggal_surat', [$tanggal_surat_dari, $tanggal_surat_sampai]);
+         }
+ 
+         $results = $query->get();
+ 
+         return Excel::download(new SuratKeluarExport($results), 'surat_keluar.xlsx');
+     }
 }
