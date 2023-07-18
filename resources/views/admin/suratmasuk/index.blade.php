@@ -45,12 +45,12 @@
                     <div class="mb-3 row">
                         <label for="example-week-input" class="col-md-2 col-form-label">Tanggal Surat</label>
                         <div class="col-sm-2">
-                            <input id="tanggal_surat_dari" name="tanggal_surat_dari" placeholder="Filter Tanggal Usulan"
+                            <input id="tanggal_surat_dari" name="tanggal_surat_dari" placeholder="Tanggal Surat dari"
                                 type="text" class="form-control flatpickr-input">
                         </div>
                         <div class="col-sm-2">
                             <input id="tanggal_surat_sampai" name="tanggal_surat_sampai"
-                                placeholder="Filter Tanggal Usulan" type="text" class="form-control flatpickr-input">
+                                placeholder="Tanggal Surat ke" type="text" class="form-control flatpickr-input">
                         </div>
                         <button type="submit" class="btn btn-success mb-4 col-sm-2 me-1"><i
                                 class="mdi mdi-filter me-1"></i>
@@ -94,6 +94,7 @@
                                             <th>Dari</th>
                                             <th>Kepada</th>
                                             <th>Perihal</th>
+                                            <th>Action</th>
                                             <th class="text-center">Upload</th>
                                         </tr>
                                     </thead>
@@ -116,6 +117,9 @@
                                             <td>{{ $row->tujuan_surat }}</td>
                                             <td>{{ $row->perihal }}</td>
 
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-danger btn-delete" data-id="{{ $row->id }}">Hapus</button>
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{ route('admin.suratmasuk.edit', $row->id) }}"><i
                                                         class="bx bx-upload icon nav-icon"></i></a>
@@ -153,6 +157,57 @@
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    // Menggunakan event delegation untuk mengikat event ke tombol Delete
+    $(document).on('click', '.btn-delete', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+
+        // Menggunakan SweetAlert untuk konfirmasi
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    url: '/admin/suratmasuk/' + id, 
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function (data) {
+                        
+                        Swal.fire(
+                            'Sukses!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        ).then(() => {
+                            
+                            window.location.reload();
+                        });
+                    },
+                    error: function (data) {
+                        
+                        Swal.fire(
+                            'Error!',
+                            'Terjadi kesalahan saat menghapus data.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function() {

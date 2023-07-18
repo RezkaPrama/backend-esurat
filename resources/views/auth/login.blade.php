@@ -1,6 +1,6 @@
 @extends('layouts.master-without_nav')
 
-@section('title')Sign In E-Surat @endsection
+@section('title')Sign In Sipoar @endsection
 
 @section('content')
 
@@ -13,13 +13,13 @@
 
                     <div class="text-center mb-4">
                         <img src="{{ URL::asset('assets/images/logo-sm.svg') }}" alt="" height="22"> <span
-                            class="logo-txt">E-Surat</span>
+                            class="logo-txt">Sipoar</span>
                     </div>
 
                     <div class="card">
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Selamat Datang di Aplikasi E-Surat!</h5>
+                                <h5 class="text-primary">Selamat Datang di Aplikasi Sipoar!</h5>
                                 <p class="text-muted">Silahkan Sign In.</p>
                             </div>
                             <div class="p-2 mt-4">
@@ -97,7 +97,7 @@
                         <script>
                             document.write(new Date().getFullYear())
 
-                        </script> E-Surat.</p>
+                        </script> Sipoar.</p>
                     </div>
                 </div>
             </div>

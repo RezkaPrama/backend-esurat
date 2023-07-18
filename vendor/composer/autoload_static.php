@@ -591,6 +591,7 @@ class ComposerStaticInit0f7027e00045f9acee8eae32500183c6
         'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\SuratKeluarExport' => __DIR__ . '/../..' . '/app/Exports/SuratKeluarExport.php',
         'App\\Exports\\SuratMasukExport' => __DIR__ . '/../..' . '/app/Exports/SuratMasukExport.php',
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',

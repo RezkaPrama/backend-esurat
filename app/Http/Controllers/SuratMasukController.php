@@ -161,7 +161,15 @@ class SuratMasukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suratmasuk = SuratMasuk::findOrFail($id);
+
+        // Delete transaction details
+        $suratmasuk->suratMasukDetail()->delete();
+
+        // Delete the transaction
+        $suratmasuk->delete();
+
+        return response()->json(['success' => true]);
     }
 
     /**

@@ -156,7 +156,13 @@ class SuratKeluarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suratkeluar = SuratKeluar::findOrFail($id);
+
+        $suratkeluar->suratKeluarDetail()->delete();
+
+        $suratkeluar->delete();
+
+        return response()->json(['success' => true]);
     }
 
      /**

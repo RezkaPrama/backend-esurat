@@ -13,7 +13,7 @@
 
                     <div class="text-center mb-4">
                         <img src="{{ URL::asset('assets/images/logo-sm.svg') }}" alt="" height="22"> <span
-                            class="logo-txt">E-Surat</span>
+                            class="logo-txt">Sipoar</span>
                     </div>
 
                     <div class="card">
@@ -27,7 +27,7 @@
 
                             <div class="text-center mt-2">
                                 <h5 class="text-primary">Update Password</h5>
-                                <p class="text-muted">Update Password E-Surat.</p>
+                                <p class="text-muted">Update Password Sipoar.</p>
                             </div>
                             <div class="p-2 mt-4">
                                 <form method="POST" action="{{ route('password.update') }}">
@@ -90,7 +90,7 @@
                     <div class="text-center text-muted p-4">
                         <p class="text-white-50">© <script>
                                 document.write(new Date().getFullYear())
-                            </script> E-Surat</p>
+                            </script> Sipoar</p>
                     </div>
                 </div>
             </div>

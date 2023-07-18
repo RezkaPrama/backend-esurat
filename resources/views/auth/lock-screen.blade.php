@@ -1,6 +1,6 @@
 @extends('layouts.master-without_nav')
 
-@section('title')Lock Screen E-Dosel @endsection
+@section('title')Lock Screen Sipoar @endsection
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
                     <div class="text-center mb-4">
                         <a href="index.html">
-                            <img src="assets/images/logo-sm.svg" alt="" height="22"> <span class="logo-txt">E-Dosel</span>
+                            <img src="assets/images/logo-sm.svg" alt="" height="22"> <span class="logo-txt">Sipoar</span>
                         </a>
                    </div>
 
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center text-muted p-4">
-                        <p class="text-white-50">© <script>document.write(new Date().getFullYear())</script> E-Dosel.</p>
+                        <p class="text-white-50">© <script>document.write(new Date().getFullYear())</script> Sipoar.</p>
                     </div>
                 </div>
             </div>
